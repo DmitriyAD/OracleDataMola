@@ -1,0 +1,273 @@
+create TABLESPACE ts_sa_CUSTOMERS
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_sa_CUSTOMERS.dat'
+Size 100M AUTOEXTEND ON NEXT 50M 
+Segment space management auto;
+
+create user u_sa_CUSTOMERS
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_sa_CUSTOMERS;
+    
+grant connect, RESOURCE to u_sa_CUSTOMERS;    
+
+
+
+create TABLESPACE ts_DW_CL
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_DW_CL.dat'
+Size 100M AUTOEXTEND ON NEXT 50M 
+Segment space management auto;
+
+create user u_DW_CL
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_DW_CL;
+    
+grant connect, RESOURCE to u_DW_CL;
+
+
+
+
+create TABLESPACE ts_DW_Star_CL
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_DW_Star_CL.dat'
+Size 100M AUTOEXTEND ON NEXT 50M 
+Segment space management auto;
+
+create user u_DW_Star_CL
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_DW_Star_CL;
+    
+grant connect, RESOURCE to u_DW_Star_CL;  
+
+
+
+
+create TABLESPACE ts_Sal_CL
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_DW_Sal_CL.dat'
+Size 100M AUTOEXTEND ON NEXT 50M 
+Segment space management auto;
+
+create user u_Sal_CL
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_Sal_CL;
+    
+grant connect, RESOURCE to u_Sal_CL; 
+
+
+
+create TABLESPACE ts_dw_AUTOMOTORS
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_sa_AUTOMOTORS.dat'
+Size 200M AUTOEXTEND ON NEXT 100M 
+Segment space management auto;
+
+create user u_dw_AUTOMOTORS
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_dw_AUTOMOTORS;
+    
+grant connect, RESOURCE to u_dw_AUTOMOTORS; 
+
+
+create TABLESPACE ts_dw_MANAGERS
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_sa_MANAGERS.dat'
+Size 200M AUTOEXTEND ON NEXT 100M 
+Segment space management auto;
+
+create user u_dw_MANAGERS
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_dw_MANAGERS;
+    
+grant connect, RESOURCE to u_dw_MANAGERS; 
+
+
+
+
+create TABLESPACE ts_dw_SALARY
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_sa_SALARY.dat'
+Size 200M AUTOEXTEND ON NEXT 100M 
+Segment space management auto;
+
+create user u_dw_SALARY
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_dw_SALARY;
+    
+grant connect, RESOURCE to u_dw_SALARY; 
+
+
+
+create TABLESPACE ts_dw_AUTO
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_sa_AUTO.dat'
+Size 200M AUTOEXTEND ON NEXT 100M 
+Segment space management auto;
+
+create user u_dw_AUTO
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_dw_AUTO;
+    
+grant connect, RESOURCE to u_dw_AUTO; 
+
+
+
+create TABLESPACE ts_dw_ORDERS
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_sa_ORDERS.dat'
+Size 200M AUTOEXTEND ON NEXT 100M 
+Segment space management auto;
+
+create user u_dw_ORDERS
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_dw_ORDERS;
+    
+grant connect, RESOURCE to u_dw_ORDERS; 
+
+
+
+create TABLESPACE ts_dw_CUSTOMERS
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_sa_customers.dat'
+Size 200M AUTOEXTEND ON NEXT 100M 
+Segment space management auto;
+
+create user u_dw_CUSTOMERS
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_dw_CUSTOMERS;
+    
+grant connect, RESOURCE to u_dw_CUSTOMERS; 
+
+
+create TABLESPACE ts_dw_COUNTRY
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_sa_COUNTRY.dat'
+Size 200M AUTOEXTEND ON NEXT 100M 
+Segment space management auto;
+
+create user u_dw_COUNTRY
+IDENTIFIED BY "%PWD%"
+    Default tablespace ts_dw_COUNTRY;
+    
+grant connect, RESOURCE to u_dw_COUNTRY; 
+
+
+create TABLESPACE ts_dw_MANAGERS
+DATAFILE '/oracle/u02/oradata/DDreizindb/db_qpt_sa_MANAGERS.dat'
+Size 200M AUTOEXTEND ON NEXT 100M 
+Segment space management auto;
+
+
+
+
+
+/*==============================================================*/
+/* Table: AUTOMOTORS                                            */
+/*==============================================================*/
+create table AUTOMOTORS (
+   ID_AUTOMOTORS        NUMBER                         not null,
+   FILIAL_NAME          varchar(40)                    null,
+   COUNTRY_ID           NUMBER                         null,
+   PHONE_FILIAL         varchar(30)                    null,
+   constraint PK_AUTOMOTORS primary key (ID_AUTOMOTORS));
+
+/*==============================================================*/
+/* Table: AUTO                                                  */
+/*==============================================================*/
+create  table AUTO (
+   ID_AUTO              NUMBER                         not null,
+   ID_AUTOMOTROS        NUMBER                         null,
+   BRAND                varchar(50)                    null,
+   MODEL                varchar(30)                    null,
+   MODIFICATION         varchar(30)                    null,
+   EQUIPMENT            varchar(20)                    null,
+   COLOR                varchar(20)                    null,
+   MANUFACTURING        DATE                           null,
+   PRICE                NUMBER                         null,
+   constraint PK_AUTO primary key  (ID_AUTO)
+);
+
+/*==============================================================*/
+/* Table: COUNTRY                                               */
+/*==============================================================*/
+create table  COUNTRY 
+(
+   ID_COUNTRY           NUMBER                         not null,
+   COUNTRY              varchar(30)                    null,
+   CITY                 varchar(50)                    null,
+   constraint PK_COUNTRY primary key  (ID_COUNTRY)
+);
+
+/*==============================================================*/
+/* Table: CUSTOMERS                                             */
+/*==============================================================*/
+create  table CUSTOMERS 
+(
+   ID_CUSTOMERS         NUMBER                         not null,
+   NAME                 varchar(50)                    null,
+   ID_COUNTRY           NUMBER                         null,
+   PHONE                varchar(30)                    null,
+   constraint PK_CUSTOMERS primary key  (ID_CUSTOMERS)
+);
+
+/*==============================================================*/
+/* Table: MANAGERS                                              */
+/*==============================================================*/
+create  table MANAGERS 
+(
+   ID_MANAGER           NUMBER                         not null,
+   NAME_MANAGER         varchar(50)                    null,
+   DATA_BIRTHSDAY       DATE                          null,
+   SEX                  varchar(10)                    null,
+   ID_AUTOMOTORS        NUMBER                         null,
+   PHONE                varchar(30)                    null,
+   constraint PK_MANAGERS primary key  (ID_MANAGER)
+);
+
+/*==============================================================*/
+/* Table: ORDERS                                                */
+/*==============================================================*/
+create  table ORDERS 
+(
+   ID_ORDERS            NUMBER                         not null,
+   ID_AUTO              NUMBER                         null,
+   ID_MANAGER           NUMBER                         null,
+   ID_CUSTOMERS         NUMBER                         null,
+   PRISE                NUMBER                         null,
+   ORDER_ISSUANCE       DATE                           null,
+   ORDER_TERMS          DATE                           null,
+   constraint PK_ORDERS primary key(ID_ORDERS)
+);
+
+/*==============================================================*/
+/* Table: SALARY                                                */
+/*==============================================================*/
+create  table SALARY 
+(
+   ID_SALARY            NUMBER                         not null,
+   ID_MANAGER           NUMBER                         null,
+   WAGES                NUMBER                         null,
+   DATA                 DATE                           null,
+   AWARD                NUMBER                         null,
+   constraint PK_SALARY primary key  (ID_SALARY)
+);
+
+alter table AUTO
+   add constraint FK_AUTO_REFERENCE_AUTOMOTO foreign key (ID_AUTOMOTROS)
+      references AUTOMOTORS (ID_AUTOMOTORS);
+      
+
+alter table CUSTOMERS
+   add constraint FK_CUSTOMER_REFERENCE_COUNTRY foreign key (ID_COUNTRY)
+      references COUNTRY (ID_COUNTRY);
+
+alter table MANAGERS
+   add constraint FK_MANAGERS_REFERENCE_AUTOMOTO foreign key (ID_AUTOMOTORS)
+      references AUTOMOTORS (ID_AUTOMOTORS);
+
+alter table ORDERS
+   add constraint FK_ORDERS_REFERENCE_AUTO foreign key (ID_AUTO)
+      references AUTO (ID_AUTO);
+
+alter table ORDERS
+   add constraint FK_ORDERS_REFERENCE_MANAGERS foreign key (ID_MANAGER)
+      references MANAGERS (ID_MANAGER);
+
+alter table ORDERS
+   add constraint FK_ORDERS_REFERENCE_CUSTOMER foreign key (ID_CUSTOMERS)
+      references CUSTOMERS (ID_CUSTOMERS);
+
+alter table SALARY
+   add constraint FK_SALARY_REFERENCE_MANAGERS foreign key (ID_MANAGER)
+      references MANAGERS (ID_MANAGER);
+      
+   
